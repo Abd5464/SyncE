@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import {
   Leaf, Zap, Recycle, Menu, X, Play, ArrowRight, Plug,
-  Trash2, Sprout, Factory, Beef, Building2, Globe, TrendingUp,
+  Trash2, Sprout, Factory, Beef, Building2, Globe,
   Linkedin, Twitter, Instagram, Flame,
 } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
-/*  Brand tokens                                                       */
+/* Brand tokens                                                      */
 /* ------------------------------------------------------------------ */
 const C = {
   primary: "#1A7A4A",
@@ -19,7 +19,7 @@ const C = {
 };
 
 /* ------------------------------------------------------------------ */
-/*  Hooks                                                              */
+/* Hooks                                                             */
 /* ------------------------------------------------------------------ */
 function useInView(threshold = 0.2) {
   const ref = useRef(null);
@@ -43,7 +43,7 @@ function useInView(threshold = 0.2) {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Particle background (canvas)                                       */
+/* Particle background (canvas)                                      */
 /* ------------------------------------------------------------------ */
 function ParticleBackground() {
   const ref = useRef(null);
@@ -100,7 +100,7 @@ function ParticleBackground() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Animated counter                                                   */
+/* Animated counter                                                  */
 /* ------------------------------------------------------------------ */
 function Counter({ to, prefix = "", suffix = "", decimals = 0, dur = 1600 }) {
   const [ref, seen] = useInView(0.5);
@@ -132,7 +132,7 @@ function Counter({ to, prefix = "", suffix = "", decimals = 0, dur = 1600 }) {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Reveal wrapper                                                     */
+/* Reveal wrapper                                                    */
 /* ------------------------------------------------------------------ */
 function Reveal({ children, delay = 0, y = 28 }) {
   const [ref, seen] = useInView(0.15);
@@ -151,7 +151,7 @@ function Reveal({ children, delay = 0, y = 28 }) {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Logo                                                               */
+/* Logo                                                              */
 /* ------------------------------------------------------------------ */
 function Logo({ light }) {
   return (
@@ -165,6 +165,7 @@ function Logo({ light }) {
           placeItems: "center",
           background: `linear-gradient(135deg, ${C.primary}, ${C.primaryLight})`,
           boxShadow: "0 4px 14px rgba(26,122,74,.35)",
+          position: "relative"
         }}
       >
         <Leaf size={15} color="#fff" style={{ position: "absolute", transform: "translate(-3px,-2px)" }} />
@@ -186,7 +187,7 @@ function Logo({ light }) {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Navbar                                                             */
+/* Navbar                                                            */
 /* ------------------------------------------------------------------ */
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -227,6 +228,7 @@ function Navbar() {
             <a
               key={l}
               href="#"
+              className="nav-link"
               style={{
                 color: "rgba(255,255,255,.82)",
                 fontSize: 14.5,
@@ -234,8 +236,6 @@ function Navbar() {
                 textDecoration: "none",
                 transition: "color .2s",
               }}
-              onMouseEnter={(e) => (e.target.style.color = C.primaryLight)}
-              onMouseLeave={(e) => (e.target.style.color = "rgba(255,255,255,.82)")}
             >
               {l}
             </a>
@@ -245,7 +245,7 @@ function Navbar() {
         <button
           className="nav-burger"
           onClick={() => setOpen((o) => !o)}
-          style={{ display: "none", background: "none", border: "none", color: "#fff", cursor: "pointer" }}
+          style={{ background: "none", border: "none", color: "#fff", cursor: "pointer" }}
         >
           {open ? <X size={26} /> : <Menu size={26} />}
         </button>
@@ -291,7 +291,7 @@ function pillBtn(primary) {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Hero                                                               */
+/* Hero                                                              */
 /* ------------------------------------------------------------------ */
 function Hero() {
   const words = ["Waste to Power.", "Locally Built.", "Nationally Scalable."];
@@ -429,7 +429,7 @@ function Hero() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Problem                                                            */
+/* Problem                                                           */
 /* ------------------------------------------------------------------ */
 function Problem() {
   const Stat = ({ icon, big, label }) => (
@@ -450,9 +450,9 @@ function Problem() {
           </p>
         </Reveal>
         <div style={{ display: "flex", alignItems: "center", gap: 40, flexWrap: "wrap", justifyContent: "center" }}>
-          <Reveal><Stat icon={<Plug size={40} />} big={<><Counter to={85} suffix="M" /></>} label="Nigerians without reliable electricity, dependent on diesel and an unstable grid." /></Reveal>
+          <Reveal><Stat icon={<Plug size={40} />} big={<Counter to={85} suffix="M" />} label="Nigerians without reliable electricity, dependent on diesel and an unstable grid." /></Reveal>
           <div style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: 60, color: C.primaryLight, fontWeight: 300, opacity: 0.7 }}>+</div>
-          <Reveal delay={120}><Stat icon={<Trash2 size={40} />} big={<><Counter to={32} suffix="M" /></>} label="Tonnes of organic waste generated annually, with 50 to 60% left untreated." /></Reveal>
+          <Reveal delay={120}><Stat icon={<Trash2 size={40} />} big={<Counter to={32} suffix="M" />} label="Tonnes of organic waste generated annually, with 50 to 60% left untreated." /></Reveal>
         </div>
         <Reveal delay={200}>
           <p style={{ textAlign: "center", marginTop: 60, fontFamily: "'Plus Jakarta Sans',sans-serif", fontWeight: 700, fontSize: "clamp(1.4rem,3vw,2rem)", color: "#fff" }}>
@@ -465,7 +465,7 @@ function Problem() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Solution / process flow                                            */
+/* Solution / process flow                                           */
 /* ------------------------------------------------------------------ */
 function Solution() {
   const steps = [
@@ -512,7 +512,7 @@ function Solution() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Target segments                                                    */
+/* Target segments                                                   */
 /* ------------------------------------------------------------------ */
 function Segments() {
   const cards = [
@@ -564,7 +564,7 @@ function SegCard({ icon, t, d }) {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Market opportunity                                                 */
+/* Market opportunity                                                */
 /* ------------------------------------------------------------------ */
 function Market() {
   const funnel = [
@@ -583,7 +583,7 @@ function Market() {
               { big: <><Counter to={16} />–<Counter to={19} suffix="M" /></>, l: "Tonnes/year feedstock availability" },
               { big: <>$<Counter to={50} />–<Counter to={100} suffix="B" /></>, l: "Total addressable market" },
               { big: <>$<Counter to={1.5} decimals={1} />–<Counter to={3} suffix="B" /></>, l: "Serviceable addressable market" },
-              { big: <><Counter to={5000} /></>, l: "Target installations (SOM)" },
+              { big: <Counter to={5000} />, l: "Target installations (SOM)" },
             ].map((m, i) => (
               <Reveal key={i} delay={i * 90}>
                 <div>
@@ -621,13 +621,13 @@ function Market() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Impact grid                                                        */
+/* Impact grid                                                       */
 /* ------------------------------------------------------------------ */
 function Impact() {
   const items = [
-    { icon: <Leaf size={26} />, big: <><Counter to={90} suffix="%" /></>, t: "Methane Reduction", d: "Captures greenhouse gases before emission." },
-    { icon: <Zap size={26} />, big: <><Counter to={65} suffix="%" /></>, t: "Energy Cost Savings", d: "Replaces diesel with clean baseload energy." },
-    { icon: <Recycle size={26} />, big: <><Counter to={5.2} decimals={1} /></>, t: "Tonnes/Month Diverted", d: "Keeps communities clean and productive." },
+    { icon: <Leaf size={26} />, big: <Counter to={90} suffix="%" />, t: "Methane Reduction", d: "Captures greenhouse gases before emission." },
+    { icon: <Zap size={26} />, big: <Counter to={65} suffix="%" />, t: "Energy Cost Savings", d: "Replaces diesel with clean baseload energy." },
+    { icon: <Recycle size={26} />, big: <Counter to={5.2} decimals={1} />, t: "Tonnes/Month Diverted", d: "Keeps communities clean and productive." },
     { icon: <Globe size={26} />, big: "4", t: "UN SDGs Aligned", d: "Goals 7, 11, 12 and 13." },
   ];
   return (
@@ -638,155 +638,3 @@ function Impact() {
           {items.map((it, i) => (
             <Reveal key={it.t} delay={i * 90}>
               <div style={{ background: "#fff", borderRadius: 18, padding: "30px 26px", border: "1px solid rgba(0,0,0,.05)", height: "100%" }}>
-                <div style={{ width: 50, height: 50, borderRadius: 12, background: "rgba(26,122,74,.1)", color: C.primary, display: "grid", placeItems: "center", marginBottom: 18 }}>{it.icon}</div>
-                <div style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontWeight: 800, fontSize: "2.4rem", color: C.text, lineHeight: 1, letterSpacing: "-.03em" }}>{it.big}</div>
-                <h3 style={{ fontWeight: 700, fontSize: 16, color: C.text, margin: "12px 0 6px", fontFamily: "'Plus Jakarta Sans',sans-serif" }}>{it.t}</h3>
-                <p style={{ color: C.muted, fontSize: 14, lineHeight: 1.5, margin: 0 }}>{it.d}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/*  Roadmap                                                            */
-/* ------------------------------------------------------------------ */
-function Roadmap() {
-  const phases = [
-    { p: "Phase 1", t: "Pilot & Optimization", active: true },
-    { p: "Phase 2", t: "Productization", sub: "Cooking gas + biofertilizer sales", active: true },
-    { p: "Phase 3", t: "EaaS Replication", sub: "Energy-as-a-Service subscriptions" },
-    { p: "Phase 4", t: "Infrastructure Maturity", sub: "Grid injection + carbon credits" },
-    { p: "Phase 5", t: "National Scale" },
-  ];
-  return (
-    <section style={{ background: "#fff", padding: "110px 24px" }}>
-      <div style={{ maxWidth: 1150, margin: "0 auto" }}>
-        <Reveal><h2 style={secTitle()}>The Road to <span style={{ color: C.primary }}>National Scale</span></h2></Reveal>
-        <div className="roadmap" style={{ display: "flex", gap: 16, marginTop: 64, flexWrap: "wrap" }}>
-          {phases.map((ph, i) => (
-            <Reveal key={ph.p} delay={i * 100}>
-              <div style={{ flex: 1, minWidth: 190, maxWidth: 230 }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
-                  <span style={{ width: 14, height: 14, borderRadius: "50%", background: ph.active ? C.primaryLight : "#d4ddd6", boxShadow: ph.active ? `0 0 0 5px rgba(46,204,113,.18)` : "none" }} />
-                  {i < phases.length - 1 && <span style={{ flex: 1, height: 2, background: ph.active ? C.primaryLight : "repeating-linear-gradient(90deg,#d4ddd6 0 6px,transparent 6px 12px)" }} />}
-                </div>
-                <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: ".06em", textTransform: "uppercase", color: ph.active ? C.primary : C.muted }}>{ph.p}</span>
-                <h3 style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontWeight: 700, fontSize: 17, color: ph.active ? C.text : "#9aab9f", margin: "6px 0 6px" }}>{ph.t}</h3>
-                {ph.sub && <p style={{ color: C.muted, fontSize: 13.5, lineHeight: 1.45, margin: 0 }}>{ph.sub}</p>}
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/*  CTA banner                                                         */
-/* ------------------------------------------------------------------ */
-function CTA() {
-  return (
-    <section style={{ background: `linear-gradient(135deg, ${C.primary}, #0F5A36)`, padding: "90px 24px", textAlign: "center" }}>
-      <Reveal>
-        <h2 style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontWeight: 800, fontSize: "clamp(1.9rem,4.5vw,3rem)", color: "#fff", margin: 0, letterSpacing: "-.02em" }}>
-          Ready to Turn Waste Into an Asset?
-        </h2>
-        <p style={{ color: "rgba(255,255,255,.82)", fontSize: 17, maxWidth: 600, margin: "20px auto 32px", lineHeight: 1.6 }}>
-          Whether you manage a farm, processing plant or estate, Sync Energy can build your energy future.
-        </p>
-        <button style={{ ...pillBtn(false), background: "#fff", color: C.primary, padding: "15px 34px", fontSize: 16, boxShadow: "0 10px 30px rgba(0,0,0,.2)" }}>
-          Get in Touch
-        </button>
-      </Reveal>
-    </section>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/*  Footer                                                             */
-/* ------------------------------------------------------------------ */
-function Footer() {
-  return (
-    <footer style={{ background: C.dark, padding: "64px 24px 32px", color: "rgba(255,255,255,.6)" }}>
-      <div style={{ maxWidth: 1150, margin: "0 auto", display: "grid", gridTemplateColumns: "1.4fr 1fr 1fr", gap: 40 }} className="footer-grid">
-        <div>
-          <Logo light />
-          <p style={{ marginTop: 16, maxWidth: 280, lineHeight: 1.6, fontSize: 14.5 }}>
-            Transforming waste into a sustainable energy future.
-          </p>
-          <div style={{ display: "flex", gap: 12, marginTop: 22 }}>
-            {[Linkedin, Twitter, Instagram].map((Ic, i) => (
-              <a key={i} href="#" style={{ width: 38, height: 38, borderRadius: 10, background: "rgba(255,255,255,.07)", display: "grid", placeItems: "center", color: "#fff" }}>
-                <Ic size={17} />
-              </a>
-            ))}
-          </div>
-        </div>
-        <div>
-          <h4 style={{ color: "#fff", fontSize: 14, fontWeight: 700, marginBottom: 16, fontFamily: "'Plus Jakarta Sans',sans-serif" }}>Explore</h4>
-          {["Solutions", "How It Works", "Roadmap", "Impact", "Contact"].map((l) => (
-            <a key={l} href="#" style={{ display: "block", color: "rgba(255,255,255,.6)", textDecoration: "none", padding: "6px 0", fontSize: 14.5 }}>{l}</a>
-          ))}
-        </div>
-        <div>
-          <h4 style={{ color: "#fff", fontSize: 14, fontWeight: 700, marginBottom: 16, fontFamily: "'Plus Jakarta Sans',sans-serif" }}>Contact</h4>
-          <p style={{ fontSize: 14.5, margin: "6px 0" }}>SyncEnergy@gmail.com</p>
-          <p style={{ fontSize: 14.5, margin: "6px 0" }}>www.biogas-pilot.io</p>
-        </div>
-      </div>
-      <div style={{ maxWidth: 1150, margin: "48px auto 0", paddingTop: 24, borderTop: "1px solid rgba(255,255,255,.1)", fontSize: 13.5 }}>
-        © 2025 Sync Energy. All rights reserved.
-      </div>
-    </footer>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/*  Helpers + root                                                     */
-/* ------------------------------------------------------------------ */
-function secTitle() {
-  return {
-    fontFamily: "'Plus Jakarta Sans',sans-serif",
-    fontWeight: 800,
-    fontSize: "clamp(1.9rem,4.2vw,3rem)",
-    color: C.text,
-    textAlign: "center",
-    letterSpacing: "-.03em",
-    lineHeight: 1.1,
-    margin: 0,
-  };
-}
-
-export default function App() {
-  return (
-    <div style={{ fontFamily: "'Inter',sans-serif", background: C.dark }}>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
-        @keyframes fadeUp { from { opacity:0; transform:translateY(26px);} to {opacity:1; transform:none;} }
-        * { box-sizing: border-box; }
-        a { -webkit-tap-highlight-color: transparent; }
-        @media (max-width: 860px) {
-          .nav-desktop { display: none !important; }
-          .nav-burger { display: block !important; }
-          .market-grid { grid-template-columns: 1fr !important; }
-          .footer-grid { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
-      <Navbar />
-      <Hero />
-      <Problem />
-      <Solution />
-      <Segments />
-      <Market />
-      <Impact />
-      <Roadmap />
-      <CTA />
-      <Footer />
-    </div>
-  );
-}
